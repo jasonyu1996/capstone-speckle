@@ -11,9 +11,9 @@ if [ -z  "$SPEC_DIR" ]; then
    exit 1
 fi
 
-CONFIG=riscv
+CONFIG=capstone
 CONFIGFILE=${CONFIG}.cfg
-RUN="spike pk "
+RUN="gem5 "
 CMD_FILE=commands.txt
 INPUT_TYPE=test
 
@@ -57,6 +57,7 @@ echo "  copy   : " $copyFlag
 echo ""
 
 
+SPECKLE_DIR=$PWD
 BUILD_DIR=$PWD/build
 COPY_DIR=$PWD/${CONFIG}-spec-${INPUT_TYPE}
 mkdir -p build;
@@ -133,11 +134,16 @@ if [ "$runFlag" = true ]; then
       # read the command file
       IFS=$'\n' read -d '' -r -a commands < $BUILD_DIR/../commands/${b}.${INPUT_TYPE}.cmd
 
+      input_cnt=0
       for input in "${commands[@]}"; do
          if [[ ${input:0:1} != '#' ]]; then # allow us to comment out lines in the cmd files
             echo "~~~Running ${b}"
             echo "  ${RUN} ${SHORT_EXE}_base.${CONFIG} ${input}"
-            eval ${RUN} ${SHORT_EXE}_base.${CONFIG} ${input}
+            GEM5_OUT=${SPECKLE_DIR}/outputs/${SHORT_EXE}_base.${CONFIG}/$input_cnt
+            mkdir -p $GEM5_OUT
+            echo ${input} > $GEM5_OUT/cmd.txt # save the cmdline here
+            GEM_OUT=$GEM_OUT ${RUN} ${SHORT_EXE}_base.${CONFIG} ${input}
+            input_cnt=$(expr $input_cnt + 1)
          fi
       done
    
