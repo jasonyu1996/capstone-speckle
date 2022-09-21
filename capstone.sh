@@ -11,7 +11,7 @@ if [ -z  "$SPEC_DIR" ]; then
 fi
 
 # NB: Use the same name in the config "label" as the config filename. See line 33 *.cfg
-CONFIG=riscv
+CONFIG=capstone
 CONFIGFILE=${CONFIG}.cfg
 
 # The config used to compile for the host machine
@@ -154,7 +154,7 @@ if [ "$compileFlag" = true ]; then
             fi
             workload_run_script=${output_dir}/run_workload${workload_idx}.sh
             echo "#!/bin/bash" > ${workload_run_script}
-            cmd="spike pk ./$(basename "${target_bin}") ${input}"
+            cmd="gem5 ./$(basename "${target_bin}") ${input}"
             message="echo 'Running: "$cmd"'"
             echo "$message" >> ${run_script}
             echo "$message" >> ${workload_run_script}
