@@ -154,7 +154,7 @@ if [ "$compileFlag" = true ]; then
             fi
             workload_run_script=${output_dir}/run_workload${workload_idx}.sh
             echo "#!/bin/bash" > ${workload_run_script}
-            cmd="GEM5_OUT=\$GEM5_OUT/$workload_idx gem5 ./$(basename "${target_bin}") ${input}"
+            cmd="GEM5_OUT=\$GEM5_OUT/$workload_idx gem5.o3 ./$(basename "${target_bin}") ${input}"
             message="echo 'Running: "$cmd"'"
             echo "$message" >> ${run_script}
             echo "$message" >> ${workload_run_script}

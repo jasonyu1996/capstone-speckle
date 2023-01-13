@@ -1,0 +1,22 @@
+--- SPEC17/benchspec/CPU/520.omnetpp_r/src/simulator/nedfunctions.cc	2015-04-15 05:36:11.000000000 +0800
++++ SPEC17.orig/benchspec/CPU/520.omnetpp_r/src/simulator/nedfunctions.cc	2022-10-05 21:12:05.459939740 +0800
+@@ -64,7 +64,7 @@
+ Define_Function3(pow, 2,   "math", "Power; see standard C function of the same name")
+ Define_Function3(sqrt, 1,  "math", "Square root; see standard C function of the same name")
+ 
+-Define_Function3(SPEC_HYPOT, 2, "math", "Length of the hypotenuse; see standard C function of the same name")
++Define_Function4(SPEC_HYPOT, static_cast<MathFunc2Args>(hypot), 2, "math", "Length of the hypotenuse; see standard C function of the same name")
+ 
+ Define_Function3(log, 1,   "math", "Natural logarithm; see standard C function of the same name")
+ Define_Function3(log10, 1, "math", "Base-10 logarithm; see standard C function of the same name")
+--- SPEC17/MANIFEST	2017-07-20 22:44:25.000000000 +0800
++++ SPEC17.orig/MANIFEST	2022-10-05 21:33:25.159979147 +0800
+@@ -7260,7 +7260,7 @@
+ 79c47692b9ce558a9c5d99209b7220dee2e42db3e036792fb42233ba78e1dc27a721f10f2193ef17da5f31417527d061cafba24921a091ac298401b5d3b74dc9 * 000000000000060a benchspec/CPU/520.omnetpp_r/src/simulator/nedexception.h
+ 6e1c65997affee760ba808fb5874b917fd40629de1503a43cc8dffc605908a822bc9298479d35a843f2f4fc8b150eae7f0e151250a334cf53f2020cdfec8a6d7 * 0000000000003076 benchspec/CPU/520.omnetpp_r/src/simulator/nedfilebuffer.cc
+ 39611604553771b3cdd7a5cb0e126e2edc7a4247c04dcd041037ecda578e1476767dd901e2363e1af51210521b28afdab23d4236dafdeb4158981fc32aab0c2d * 0000000000000d59 benchspec/CPU/520.omnetpp_r/src/simulator/nedfilebuffer.h
+-c0d3ea5e86ad789b727f7fdcd58403a79f30db3df7393a83e0604ec729a38fc3f86faa8396e17338e3ad32aa5cc99ef93595e9de532c94f401ecd97075e76750 * 000000000000565c benchspec/CPU/520.omnetpp_r/src/simulator/nedfunctions.cc
++7fd2989af3cf0be712d4b9f4c750769a8af80868eebbbaf05d7931c4422970c3d2c2d702c44930618764a1cb54f039294581bf7f1310cb4f5411eb8b17b73510 * 000000000000567f benchspec/CPU/520.omnetpp_r/src/simulator/nedfunctions.cc
+ 1f4cc20d73b6608e0ded3793f24ab7fc6c59172fae4c143f7106dc08699248c6d28011e5d3c0b3bbd7fb13c734bfa126e79392ab762c36032feed5f6d3aee424 * 0000000000001a0e benchspec/CPU/520.omnetpp_r/src/simulator/nedparser.cc
+ 948724ca794c0735ff1265f483cd9c6e353a34df5dd58b10cc3dcb1eb2446d982e02bd4feb49f2b8898919420e35f389bb42a2e7cd4b134219996624a624f1a6 * 00000000000012d9 benchspec/CPU/520.omnetpp_r/src/simulator/nedparser.h
+ b63d58bb49a28dc3dd45ad1132fafa9df21225cdd954f0dc8854d7a431d65553686d1bd062dc1aec61cac1db9f80d5534de08f52beec8dd74e45432672969d08 * 0000000000004846 benchspec/CPU/520.omnetpp_r/src/simulator/nedresourcecache.cc
