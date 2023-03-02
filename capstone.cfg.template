@@ -30,7 +30,7 @@
 #--------- Label --------------------------------------------------------------
 # Arbitrary string to tag binaries 
 #                  Two Suggestions: # (1) EDIT this label as you try new ideas.
-%define label capstone-o3-emu                # (2)      Use a label meaningful to *you*.
+%define label capstone                # (2)      Use a label meaningful to *you*.
 
 
 #--------- Preprocessor -------------------------------------------------------
@@ -123,9 +123,9 @@ default:
    CC_VERSION_OPTION       = -v
    CXX_VERSION_OPTION      = -v
    FC_VERSION_OPTION       = -v
-   CLD = riscv64-unknown-linux-gnu-gcc -static -Wl,--wrap=malloc -Wl,--wrap=free -L/home/jasonyu/Research/Capstone/gem5-emu/tests/capstone
-   CXXLD = riscv64-unknown-linux-gnu-g++ -static -Wl,--wrap=malloc -Wl,--wrap=free -L/home/jasonyu/Research/Capstone/gem5-emu/tests/capstone
-   FLD = riscv64-unknown-linux-gnu-gfortran -static -Wl,--wrap=malloc -Wl,--wrap=free -L/home/jasonyu/Research/Capstone/gem5-emu/tests/capstone
+   CLD = riscv64-unknown-linux-gnu-gcc -static -Wl,--wrap=malloc -Wl,--wrap=free -L##CAPSTONE_INTERP_LIB_DIR##
+   CXXLD = riscv64-unknown-linux-gnu-g++ -static -Wl,--wrap=malloc -Wl,--wrap=free -L##CAPSTONE_INTERP_LIB_DIR##
+   FLD = riscv64-unknown-linux-gnu-gfortran -static -Wl,--wrap=malloc -Wl,--wrap=free -L##CAPSTONE_INTERP_LIB_DIR##
    LIBS=-lc -lstdc++ -linterp
 
 default:
